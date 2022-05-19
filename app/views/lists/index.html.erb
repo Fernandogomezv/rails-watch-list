@@ -1,0 +1,5 @@
+<ul class="index">
+  <% @lists.each do |list| %>
+    <li class="name"><%= link_to list.name, list_path(list) %></li>
+  <% end %>
+</ul>

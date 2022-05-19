@@ -1,0 +1,8 @@
+<div class="needs-validation d-flex justify-content-center">
+  <%= simple_form_for (@list), html: {style: "width:500px;"} do |f| %>
+    <div class="form-floating mb-3">
+      <%= f.input :name, class: "form-control", placeholder: "name" %>
+      <%= f.submit "Submit List", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

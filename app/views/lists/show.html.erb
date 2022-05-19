@@ -1,0 +1,33 @@
+<h2><%= @list.name %></h2>
+<ul class="list-group">
+  <li>Bookmarks</li>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li class="list-group-item"><%= bookmark.comment %> - <%= bookmark.movie.title %> <%= link_to "Remove this bookmark", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?"} %></li>
+  <% end %>
+  <li>Reviews</li>
+  <% @list.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %> <%= review.stars %> <%= link_to "remove", review_path(review), method: :delete, data: { confirm: "Are you sure?"} %></li>
+  <% end %>
+</ul>
+
+<div class="needs-validation d-flex justify-content-center">
+  <%= simple_form_for [@list, @bookmark], html: {style: "width:500px;"} do |f| %>
+    <div class="form-floating mb-3">
+      <%= f.input :comment, class: "form-control", placeholder: "comment" %>
+      <%= f.input :movie_id, collection: @movies, class: "form-control", label_method: :title, value_method: :id %>
+      <%= f.hidden_field :list_id, value: @list.id %>
+      <%= f.submit "Submit Bookmark", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="needs-validation d-flex justify-content-center">
+  <%= simple_form_for [@list, @review], html: {style: "width:500px;"} do |f| %>
+    <div class="form-floating mb-3">
+      <%= f.input :content, class: "form-control", placeholder: "content" %>
+      <%= f.hidden_field :list_id, value: @list.id %>
+      <%= f.input :stars, collection: [1, 2, 3, 4, 5], class: "form-control" %>
+      <%= f.submit "Submit Review", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
