@@ -12,6 +12,7 @@ require 'json'
 Movie.destroy_all
 Bookmark.destroy_all
 List.destroy_all
+Review.destroy_all
 puts 'cleaning...'
 
 puts 'creating movies...'
