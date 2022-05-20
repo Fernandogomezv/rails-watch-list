@@ -1,5 +1,13 @@
-<ul class="index">
+<ul class="index d-flex justify-content-evenly">
   <% @lists.each do |list| %>
-    <li class="name"><%= link_to list.name, list_path(list) %></li>
+    <li>
+  <div class="card border-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header"></div>
+      <div class="card-body text-dark">
+      <h5 class="card-title"><%= link_to list.name, list_path(list) %></h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </li>
+    </div>
+  </div>
   <% end %>
 </ul>

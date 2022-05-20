@@ -9,10 +9,10 @@
     <li class="list-group-item"><%= review.content %> <%= review.stars %> <%= link_to "remove", review_path(review), method: :delete, data: { confirm: "Are you sure?"} %></li>
   <% end %>
 </ul>
-
+<div class="d-flex justify-content-around">
 <div class="needs-validation d-flex justify-content-center">
   <%= simple_form_for [@list, @bookmark], html: {style: "width:500px;"} do |f| %>
-    <div class="form-floating mb-3">
+    <div class="form-floating mb-3 d-grid gap-2">
       <%= f.input :comment, class: "form-control", placeholder: "comment" %>
       <%= f.input :movie_id, collection: @movies, class: "form-control", label_method: :title, value_method: :id %>
       <%= f.hidden_field :list_id, value: @list.id %>
@@ -20,14 +20,14 @@
     </div>
   <% end %>
 </div>
-
-<div class="needs-validation d-flex justify-content-center">
+<div class="needs-validation d-flex justify-content-center" data-controller="star">
   <%= simple_form_for [@list, @review], html: {style: "width:500px;"} do |f| %>
-    <div class="form-floating mb-3">
+    <div class="form-floating mb-3 d-grid gap-2">
       <%= f.input :content, class: "form-control", placeholder: "content" %>
       <%= f.hidden_field :list_id, value: @list.id %>
-      <%= f.input :stars, collection: [1, 2, 3, 4, 5], class: "form-control" %>
+      <%= f.input :stars, collection: (1..5).to_a, label: "Rating" %>
       <%= f.submit "Submit Review", class: "btn btn-primary" %>
     </div>
   <% end %>
+</div>
 </div>
